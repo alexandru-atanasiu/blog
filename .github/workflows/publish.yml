@@ -99,7 +99,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url || steps.deployment_retry.outputs.page_url }}
     steps:
       - name: Check out the converted commit
         uses: actions/checkout@v7
@@ -109,11 +109,35 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v6
 
+      # The artifact name is unique per run attempt: a re-run of this job uploads again into
+      # the same run, and deploy-pages refuses to choose between two artifacts of one name.
       - name: Upload dist/ as the Pages artifact
         uses: actions/upload-pages-artifact@v5
         with:
+          name: github-pages-${{ github.run_attempt }}
           path: dist
+
+      # deploy-pages looks the artifact up by name, and the artifact listing can lag the
+      # upload by a few seconds, occasionally by most of a minute (actions/deploy-pages#451).
+      # A lookup that comes too early fails with "No artifacts named ... were found". So:
+      # give the listing a moment, and if the deploy still fails, wait longer and try once more.
+      - name: Give the artifact listing a moment
+        run: sleep 10
 
       - name: Deploy to GitHub Pages
         id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+
+      - name: Deploy to GitHub Pages (retry)
+        id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v5
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
