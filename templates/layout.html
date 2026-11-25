@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="{{lang}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{fullTitle}}</title>
+  <meta name="description" content="{{description}}">
+  <meta name="author" content="{{author}}">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="{{ogTitle}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="{{ogType}}">
+  <meta property="og:site_name" content="{{siteTitle}}">
+  {{{headExtra}}}
+  <link rel="alternate" type="application/atom+xml" title="{{siteTitle}}" href="{{feedUrl}}">
+  <link rel="icon" type="image/svg+xml" href="{{faviconUrl}}">
+  <link rel="stylesheet" href="{{cssUrl}}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="site-title" href="{{homeUrl}}"><span class="prompt" aria-hidden="true">&gt;_</span> {{siteTitle}}</a>
+      <nav aria-label="Main">
+        <a href="{{homeUrl}}">Posts</a>
+        <a href="{{aboutUrl}}">About</a>
+        <a href="{{feedUrl}}">RSS</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+{{{content}}}
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>&copy; {{author}}</span>
+      <span><a href="{{feedUrl}}">Atom feed</a></span>
+    </div>
+  </footer>
+</body>
+</html>

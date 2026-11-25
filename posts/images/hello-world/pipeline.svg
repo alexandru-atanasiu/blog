@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 150" role="img" aria-label="Markdown files are converted by the build script into HTML in dist, which GitHub Pages serves" font-family="system-ui, 'Segoe UI', sans-serif" font-size="15">
+  <rect width="720" height="150" rx="10" fill="#1a2029"/>
+  <g fill="#232c38" stroke="#6cb6ff" stroke-width="1.5">
+    <rect x="24" y="45" width="150" height="60" rx="8"/>
+    <rect x="285" y="45" width="150" height="60" rx="8"/>
+    <rect x="546" y="45" width="150" height="60" rx="8"/>
+  </g>
+  <g fill="#dfe5ec" text-anchor="middle">
+    <text x="99" y="71" font-weight="600">posts/*.md</text>
+    <text x="99" y="92" fill="#94a0ae" font-size="13">Markdown</text>
+    <text x="360" y="71" font-weight="600">dist/</text>
+    <text x="360" y="92" fill="#94a0ae" font-size="13">static HTML</text>
+    <text x="621" y="71" font-weight="600">GitHub Pages</text>
+    <text x="621" y="92" fill="#94a0ae" font-size="13">/blog/</text>
+  </g>
+  <g stroke="#94a0ae" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M184 75h91m-9-7l9 7-9 7"/>
+    <path d="M445 75h91m-9-7l9 7-9 7"/>
+  </g>
+  <g fill="#94a0ae" text-anchor="middle" font-size="13">
+    <text x="229" y="62">build</text>
+    <text x="490" y="62">deploy</text>
+  </g>
+</svg>

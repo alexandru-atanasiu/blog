@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>Alexandru Atanasiu</title>
+  <subtitle>Game development and software engineering notes</subtitle>
+  <link rel="self" type="application/atom+xml" href="https://alexandru-atanasiu.github.io/blog/feed.xml"/>
+  <link rel="alternate" type="text/html" href="https://alexandru-atanasiu.github.io/blog/"/>
+  <id>https://alexandru-atanasiu.github.io/blog/</id>
+  <updated>2026-11-25T00:00:00Z</updated>
+  <author><name>Alexandru Atanasiu</name></author>
+  <entry>
+    <title>Hello, world (sample post)</title>
+    <link rel="alternate" type="text/html" href="https://alexandru-atanasiu.github.io/blog/posts/hello-world/"/>
+    <id>https://alexandru-atanasiu.github.io/blog/posts/hello-world/</id>
+    <published>2026-11-25T00:00:00Z</published>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <category term="meta"/>
+    <category term="sample"/>
+    <summary>A sample post that exercises every feature of the blog pipeline. Safe to delete once the first real article is up.</summary>
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This is a sample post.&lt;/strong&gt; It exists to check that the blog pipeline works end to end:
+headings, code blocks, tables, images and links. Delete it (or mark it &lt;code&gt;draft: true&lt;/code&gt;) once
+there is a real article to replace it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;how-this-blog-is-built&quot;&gt;How this blog is built&lt;/h2&gt;
+&lt;p&gt;Every article is a Markdown file in the &lt;code&gt;posts/&lt;/code&gt; folder. A small build script turns those
+files into static HTML in &lt;code&gt;dist/&lt;/code&gt;, and a GitHub Actions workflow publishes that folder to
+&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://alexandru-atanasiu.github.io/blog/posts/images/hello-world/pipeline.svg&quot; alt=&quot;Markdown files are built into dist/ and deployed to GitHub Pages&quot; loading=&quot;lazy&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Links between pages are written as links between Markdown files, for example the
+&lt;a href=&quot;https://alexandru-atanasiu.github.io/blog/about/&quot;&gt;About page&lt;/a&gt;, and are rewritten at build time.&lt;/p&gt;
+&lt;h2 id=&quot;code-blocks&quot;&gt;Code blocks&lt;/h2&gt;
+&lt;p&gt;Fenced code blocks are highlighted at build time, so no JavaScript runs in the reader’s
+browser. Inline code such as &lt;code&gt;deltaTime&lt;/code&gt; works too.&lt;/p&gt;
+&lt;h3 id=&quot;c&quot;&gt;C#&lt;/h3&gt;
+&lt;pre class=&quot;code&quot; data-lang=&quot;C#&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;sealed&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;FixedTimestep&lt;/span&gt;
+{
+    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;double&lt;/span&gt; Step = &lt;span class=&quot;hljs-number&quot;&gt;1.0&lt;/span&gt; / &lt;span class=&quot;hljs-number&quot;&gt;60.0&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;double&lt;/span&gt; _accumulator;
+
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;Advance&lt;/span&gt;(&lt;span class=&quot;hljs-params&quot;&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;double&lt;/span&gt; deltaTime, Action&amp;lt;&lt;span class=&quot;hljs-built_in&quot;&gt;double&lt;/span&gt;&amp;gt; simulate&lt;/span&gt;)&lt;/span&gt;
+    {
+        _accumulator += Math.Min(deltaTime, &lt;span class=&quot;hljs-number&quot;&gt;0.25&lt;/span&gt;); &lt;span class=&quot;hljs-comment&quot;&gt;// avoid the spiral of death&lt;/span&gt;
+        &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (_accumulator &amp;gt;= Step)
+        {
+            simulate(Step);
+            _accumulator -= Step;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;c-1&quot;&gt;C++&lt;/h3&gt;
+&lt;pre class=&quot;code&quot; data-lang=&quot;C++&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;cstdint&amp;gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;template&lt;/span&gt; &amp;lt;&lt;span class=&quot;hljs-keyword&quot;&gt;typename&lt;/span&gt; T&amp;gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;SparseSet&lt;/span&gt; {
+&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt;:
+    &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-type&quot;&gt;bool&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(std::&lt;span class=&quot;hljs-type&quot;&gt;uint32_t&lt;/span&gt; id)&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;const&lt;/span&gt; &lt;/span&gt;{
+        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; id &amp;lt; sparse_.&lt;span class=&quot;hljs-built_in&quot;&gt;size&lt;/span&gt;() &amp;amp;&amp;amp; sparse_[id] &amp;lt; dense_.&lt;span class=&quot;hljs-built_in&quot;&gt;size&lt;/span&gt;() &amp;amp;&amp;amp; dense_[sparse_[id]] == id;
+    }
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;private&lt;/span&gt;:
+    std::vector&amp;lt;std::&lt;span class=&quot;hljs-type&quot;&gt;uint32_t&lt;/span&gt;&amp;gt; sparse_;
+    std::vector&amp;lt;std::&lt;span class=&quot;hljs-type&quot;&gt;uint32_t&lt;/span&gt;&amp;gt; dense_;
+    std::vector&amp;lt;T&amp;gt; values_;
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;typescript&quot;&gt;TypeScript&lt;/h3&gt;
+&lt;pre class=&quot;code&quot; data-lang=&quot;TypeScript&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;hljs-title class_&quot;&gt;Vec2&lt;/span&gt; = { &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: &lt;span class=&quot;hljs-built_in&quot;&gt;number&lt;/span&gt;; &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: &lt;span class=&quot;hljs-built_in&quot;&gt;number&lt;/span&gt; };
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; lerp = (&lt;span class=&quot;hljs-attr&quot;&gt;a&lt;/span&gt;: &lt;span class=&quot;hljs-title class_&quot;&gt;Vec2&lt;/span&gt;, &lt;span class=&quot;hljs-attr&quot;&gt;b&lt;/span&gt;: &lt;span class=&quot;hljs-title class_&quot;&gt;Vec2&lt;/span&gt;, &lt;span class=&quot;hljs-attr&quot;&gt;t&lt;/span&gt;: &lt;span class=&quot;hljs-built_in&quot;&gt;number&lt;/span&gt;): &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-params&quot;&gt;Vec2&lt;/span&gt; =&amp;gt;&lt;/span&gt; ({
+  &lt;span class=&quot;hljs-attr&quot;&gt;x&lt;/span&gt;: a.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; + (b.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt; - a.&lt;span class=&quot;hljs-property&quot;&gt;x&lt;/span&gt;) * t,
+  &lt;span class=&quot;hljs-attr&quot;&gt;y&lt;/span&gt;: a.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; + (b.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt; - a.&lt;span class=&quot;hljs-property&quot;&gt;y&lt;/span&gt;) * t,
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;shaders&quot;&gt;Shaders&lt;/h3&gt;
+&lt;pre class=&quot;code&quot; data-lang=&quot;HLSL&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;&lt;span class=&quot;hljs-type&quot;&gt;Texture2D&lt;/span&gt; SpriteTexture : &lt;span class=&quot;hljs-keyword&quot;&gt;register&lt;/span&gt;(t0);
+&lt;span class=&quot;hljs-type&quot;&gt;SamplerState&lt;/span&gt; SpriteSampler : &lt;span class=&quot;hljs-keyword&quot;&gt;register&lt;/span&gt;(s0);
+
+&lt;span class=&quot;hljs-type&quot;&gt;float4&lt;/span&gt; MainPS(&lt;span class=&quot;hljs-type&quot;&gt;float4&lt;/span&gt; position : &lt;span class=&quot;hljs-symbol&quot;&gt;SV_Position&lt;/span&gt;, &lt;span class=&quot;hljs-type&quot;&gt;float4&lt;/span&gt; color : &lt;span class=&quot;hljs-symbol&quot;&gt;COLOR0&lt;/span&gt;, &lt;span class=&quot;hljs-type&quot;&gt;float2&lt;/span&gt; uv : &lt;span class=&quot;hljs-symbol&quot;&gt;TEXCOORD0&lt;/span&gt;) : &lt;span class=&quot;hljs-symbol&quot;&gt;SV_Target&lt;/span&gt;
+{
+    &lt;span class=&quot;hljs-type&quot;&gt;float4&lt;/span&gt; texel = SpriteTexture.&lt;span class=&quot;hljs-built_in&quot;&gt;Sample&lt;/span&gt;(SpriteSampler, uv);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;lerp&lt;/span&gt;(texel, texel * color, &lt;span class=&quot;hljs-number&quot;&gt;0.5&lt;/span&gt;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre class=&quot;code&quot; data-lang=&quot;GLSL&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#version 330 core&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;vec2&lt;/span&gt; vUv;
+&lt;span class=&quot;hljs-keyword&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;vec4&lt;/span&gt; fragColor;
+&lt;span class=&quot;hljs-keyword&quot;&gt;uniform&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;sampler2D&lt;/span&gt; uTexture;
+
+&lt;span class=&quot;hljs-type&quot;&gt;void&lt;/span&gt; main() {
+    fragColor = &lt;span class=&quot;hljs-built_in&quot;&gt;texture&lt;/span&gt;(uTexture, vUv);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;shell&quot;&gt;Shell&lt;/h3&gt;
+&lt;pre class=&quot;code&quot; data-lang=&quot;Bash&quot;&gt;&lt;code class=&quot;hljs&quot;&gt;npm ci
+npm run build   &lt;span class=&quot;hljs-comment&quot;&gt;# writes the site to dist/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
+&lt;div class=&quot;table-wrap&quot;&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Fence tag&lt;/th&gt;
+&lt;th&gt;Language&lt;/th&gt;
+&lt;th&gt;Typical use&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;csharp&lt;/code&gt;, &lt;code&gt;cs&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;C#&lt;/td&gt;
+&lt;td&gt;Gameplay, tools&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;cpp&lt;/code&gt;, &lt;code&gt;c++&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;C++&lt;/td&gt;
+&lt;td&gt;Engine code&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ts&lt;/code&gt;, &lt;code&gt;js&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;TypeScript&lt;/td&gt;
+&lt;td&gt;Web tooling&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;hlsl&lt;/code&gt;, &lt;code&gt;glsl&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Shaders&lt;/td&gt;
+&lt;td&gt;Rendering&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;bash&lt;/code&gt;, &lt;code&gt;sh&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;Shell&lt;/td&gt;
+&lt;td&gt;Build and CI snippets&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;&lt;/div&gt;
+&lt;h2 id=&quot;thats-it&quot;&gt;That’s it&lt;/h2&gt;
+&lt;p&gt;If you can read this page with styled code, a table and a diagram, the pipeline works.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
